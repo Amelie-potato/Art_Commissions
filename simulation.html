@@ -22,13 +22,6 @@
         <input type="number" id="budget" oninput="filterBudget()">
         <span>€</span>
     </div>
-    <span>This can get you:</span>
-    <div class="budget-images" id="budget-options">
-        <div class="budget-item">Sketch</div>
-        <div class="budget-item">Lineart</div>
-        <div class="budget-item">Flat</div>
-        <div class="budget-item">Render</div>
-    </div>
 </div>
 
 <div class="encadre" id="category-section">
@@ -51,6 +44,7 @@
     or
     <a href="https://www.instagram.com/suteki_koneko_/" class="contact-link">Instagram</a>
 </h4>
+
 <script>
 let prices = {};
 let selectedCategory = null;
@@ -63,43 +57,33 @@ fetch('prices.json')
 
 function filterBudget() {
     const budgetValue = parseFloat(document.getElementById('budget').value);
-    const budgetItems = document.querySelectorAll('.budget-item');
-
-    budgetItems.forEach(item => {
-        const cat = item.textContent.toLowerCase();
-        const minPrice = Math.min(...Object.values(prices[cat] || {}));
-        if (!budgetValue || budgetValue < minPrice) {
-            item.classList.add('inactive');
-        } else {
-            item.classList.remove('inactive');
-        }
-    });
+    const budgetItems = Object.keys(prices);
 
     const categoryOptions = document.getElementById('category-options');
     categoryOptions.innerHTML = '';
 
-    budgetItems.forEach(item => {
-        if (!item.classList.contains('inactive')) {
+    budgetItems.forEach(cat => {
+        const minPrice = Math.min(...Object.values(prices[cat] || {}));
+        if (budgetValue && budgetValue >= minPrice) {
             const div = document.createElement('div');
             div.classList.add('category-option');
 
-            // Add image inside rectangle
             const img = document.createElement('img');
-            img.src = `Commission_pictures/${item.textContent.toLowerCase()}.png`;
-            img.alt = item.textContent;
-            img.style.width = '100px';
-            img.style.height = '100px';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '8px';
-            img.style.marginBottom = '5px';
-            div.appendChild(img);
+img.src = `Commission_pictures/${cat}.png`;
+img.alt = cat;
+img.style.width = '100px';
+img.style.height = '100px'; // <-- force same height
+img.style.objectFit = 'cover'; // crop if necessary
+img.style.borderRadius = '8px';
+img.style.marginBottom = '5px';
+div.appendChild(img);
 
-            // Add label
+
             const label = document.createElement('span');
-            label.textContent = item.textContent;
+            label.textContent = cat.charAt(0).toUpperCase() + cat.slice(1);
             div.appendChild(label);
 
-            div.onclick = () => selectCategory(item.textContent.toLowerCase());
+            div.onclick = () => selectCategory(cat);
             categoryOptions.appendChild(div);
         }
     });
@@ -128,6 +112,11 @@ function selectCategory(cat) {
         div.textContent = part.charAt(0).toUpperCase() + part.slice(1);
         div.onclick = () => selectDetail(part);
         detailsDiv.appendChild(div);
+        let displayText = part === 'bust' ? 'Chest' : part.charAt(0).toUpperCase() + part.slice(1);
+
+    div.textContent = displayText;
+    div.onclick = () => selectDetail(part);
+    detailsDiv.appendChild(div);
     });
     detailsDiv.style.display = 'flex';
     document.getElementById('total-price').style.display = 'none';
