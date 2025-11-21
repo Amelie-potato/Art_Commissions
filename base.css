@@ -106,9 +106,9 @@ nav a {
     color: inherit;
 }
 
-
 .card-static {
     width: 40%;
+    flex-shrink: 0;
     border: 2px solid #ddd;
     border-radius: 12px;
     overflow: hidden;
@@ -136,24 +136,6 @@ nav a {
     background: linear-gradient(90deg, #2d4c82, #a335bc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.example-images {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-}
-
-.example-images img {
-    width: 300px;
-    height: auto;
-    border: 2px solid #ddd;
-    border-radius: 12px;
-}
-
-h2 {
-    color: white;
 }
 
 h4.contact-text {
@@ -198,6 +180,7 @@ h4.contact-text {
     text-align: center;
     padding: 10px;
 }
+
 .detail-wrapper {
     width: 80%;
     margin: 40px auto;
@@ -213,11 +196,6 @@ h4.contact-text {
     align-items: flex-start;
 }
 
-.card-static {
-    width: 40%;
-    flex-shrink: 0;
-}
-
 .detail-column {
     display: flex;
     flex-direction: column;
@@ -227,4 +205,59 @@ h4.contact-text {
     top: 0;
     width: 91%;
     align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+        margin: 5px 8px;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+        width: 90%;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .card-inner {
+        aspect-ratio: 1 / 1;
+    }
+
+    .card-back p {
+        font-size: 1.2rem;
+    }
+
+    .detail-wrapper {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .detail-container {
+        flex-direction: column;
+        position: relative;
+        align-items: center;
+    }
+
+    .card-static {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+
+    .detail-column {
+        position: relative;
+        width: 100%;
+        align-items: center;
+    }
+
+    .detail-text {
+        width: 100%;
+    }
 }
