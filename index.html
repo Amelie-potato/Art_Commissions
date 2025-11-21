@@ -86,18 +86,15 @@
 
     </div>
 
-
-
-<h2 class="contact-text">
-    If you're interested, you can contact me on
-    <a href="https://www.tumblr.com/blog/noveltale" class="contact-link" target="_blank">Tumblr</a>
-</h2>
+    <h4 class="contact-text">
+        If you're interested, you can contact me on
+        <b class="contact-link">Tumblr</b>
+    </h4>
 
 <script>
 fetch('prices.json')
     .then(resp => resp.json())
     .then(data => {
-
         document.querySelectorAll('.card-block').forEach(card => {
             const category = card.dataset.category;
             if (data[category]) {

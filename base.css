@@ -1,11 +1,12 @@
 body {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background: black;
     font-family: Arial, sans-serif;
+    color: #fff;
 }
 
 h1 {
@@ -19,17 +20,17 @@ h1 {
     padding: 0 10px;
 }
 
-
-
 nav {
     text-align: center;
     margin-top: 20px;
 }
+
 nav a {
     text-align: center;
     font-family: "Brush Script MT", cursive;
     font-size: 2rem;
     color: white;
+    margin: 0 10px;
 }
 
 .cards-container {
@@ -49,7 +50,6 @@ nav a {
     font-family: "Brush Script MT", cursive;
 }
 
-
 .card {
     width: 80%;
     margin: 0 auto;
@@ -68,7 +68,6 @@ nav a {
 .card:hover .card-inner {
     transform: rotateY(180deg);
 }
-
 
 .card-front,
 .card-back {
@@ -97,14 +96,16 @@ nav a {
     border: 2px solid #ddd;
 }
 
-.card-back p{
-    color : white;
+.card-back p {
+    color: white;
 }
+
 .card-block a {
     display: block;
     text-decoration: none;
     color: inherit;
 }
+
 .detail-container {
     display: flex;
     gap: 30px;
@@ -133,15 +134,17 @@ nav a {
     padding: 20px;
     font-size: 1.2rem;
     line-height: 1.5;
-    color : white;
+    color: white;
     background-color: black;
 }
+
 .detail-text strong {
     font-weight: bold;
     background: linear-gradient(90deg, #2d4c82, #a335bc);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .example-images {
     display: flex;
     justify-content: center;
@@ -155,8 +158,26 @@ nav a {
     border: 2px solid #ddd;
     border-radius: 12px;
 }
-h2{
+
+h2 {
     color: white;
+}
+
+h4.contact-text {
+    text-align: center;
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+.contact-link {
+    font-family: "Brush Script MT", cursive;
+    font-size: 1.2em;
+    text-decoration: underline;
+    color: #2d4c82;
+}
+
+.contact-link:hover {
+    color: #a335bc;
 }
 
 .title-wrapper {
@@ -184,20 +205,3 @@ h2{
     text-align: center;
     padding: 10px;
 }
-.contact-text {
-    text-align: center;
-    font-size: 2em;
-    margin-top: 20px;
-}
-
-.contact-link {
-    font-family: "Brush Script MT", cursive;
-    font-size: 1.2em;
-    text-decoration: underline;
-    color: #2d4c82;
-}
-
-.contact-link:hover {
-    color: #a335bc;
-}
-
