@@ -41,7 +41,7 @@
 fetch('prices.json')
     .then(response => response.json())
     .then(data => {
-        const lineart = data["lineart"];  // ← Correct category
+        const lineart = data["lineart"];
 
         if (lineart) {
             document.getElementById("price-head").textContent = lineart.head;
@@ -51,6 +51,7 @@ fetch('prices.json')
     })
     .catch(error => console.error("Erreur chargement JSON :", error));
 </script>
+
 
 </body>
 </html>
