@@ -4,11 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="portfolio.css">
     <title>Portfolio</title>
 </head>
 <body>
+    <h1>Portfolio</h1>
     <nav>
         <a href="index.html">Back</a>
     </nav>
+
+    <div class="filter-buttons">
+        <label class="switch">
+            <input type="checkbox" id="toggle-suggestive">
+            <span class="slider"></span>
+        </label>
+        <span>Suggestive</span>
+
+        <label class="switch">
+            <input type="checkbox" id="toggle-gore">
+            <span class="slider"></span>
+        </label>
+        <span>Gore</span>
+    </div>
+
+    <div class="drawings-container" id="drawings-container"></div>
+<h4 class="contact-text">
+    If you're interested, you can contact me on
+    <a href="https://www.tumblr.com/blog/noveltale" class="contact-link">Tumblr</a>
+    or
+    <a href="https://www.instagram.com/suteki_koneko_/" class="contact-link">Instagram</a>
+</h4>
+    <script>
+        const container = document.getElementById('drawings-container');
+
+        let drawings = [];
+
+        fetch('drawings.json')
+            .then(res => res.json())
+            .then(data => {
+                drawings = data;
+                renderDrawings();
+            })
+            .catch(err => console.error("Error loading JSON:", err));
+
+        const toggleSuggestive = document.getElementById('toggle-suggestive');
+        const toggleGore = document.getElementById('toggle-gore');
+
+        toggleSuggestive.addEventListener('change', renderDrawings);
+        toggleGore.addEventListener('change', renderDrawings);
+
+        function renderDrawings() {
+            container.innerHTML = '';
+
+            const showSuggestive = toggleSuggestive.checked;
+            const showGore = toggleGore.checked;
+
+            drawings.forEach(d => {
+                if (d.tag === 'safe' || (d.tag === 'suggestive' && showSuggestive) || (d.tag === 'gore' && showGore)) {
+                    const img = document.createElement('img');
+                    img.src = d.src;
+                    img.alt = d.tag;
+                    img.className = 'drawing';
+                    container.appendChild(img);
+                }
+            });
+        }
+    </script>
 </body>
 </html>

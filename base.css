@@ -196,6 +196,8 @@ h4{
 .detail-container {
     display: flex;
     position: relative;
+    color: black;
+    background: black;
     align-items: flex-start;
 }
 
